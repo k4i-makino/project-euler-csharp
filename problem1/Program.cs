@@ -1,19 +1,22 @@
 ﻿using System;
-using System.Linq;
 
 namespace app
 {
     class Program
     {
+        const double UPPER = 1000;
+
         static void Main(string[] args)
         {
-            var answer = 0;
-
-            answer = Enumerable.Range(1, 999)
-                    .Where(i => i % 5 == 0 || i % 3 == 0)
-                    .Sum();
+            var answer = GetMultipleSum(3) + GetMultipleSum(5) - GetMultipleSum(15);
 
             Console.WriteLine(answer);
+        }
+
+        private static double GetMultipleSum(int n)
+        {
+            var sumUpper = Math.Floor((UPPER - 1) / n);
+            return n * (sumUpper * (sumUpper + 1) / 2);
         }
     }
 }
